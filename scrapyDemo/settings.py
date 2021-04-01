@@ -37,10 +37,10 @@ COOKIES_ENABLED = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-DEFAULT_REQUEST_HEADERS = {
-  ':authority': 'www.zazhi.us',
-  'referer': 'https://www.zazhi.us/magazines?cao_type=1'
-}
+# DEFAULT_REQUEST_HEADERS = {
+#   ':authority': 'www.zazhi.us',
+#   'referer': 'https://www.zazhi.us/magazines?cao_type=1'
+# }
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html

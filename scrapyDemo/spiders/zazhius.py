@@ -7,8 +7,13 @@ import re
 
 class ZazhiusSpider(CrawlSpider):
     name = 'zazhius'
+    custom_settings = {
+        'DEFAULT_REQUEST_HEADERS': {
+          ':authority': 'www.zazhi.us',
+          'referer': 'https://www.zazhi.us/magazines?cao_type=1'
+        }
+    }
     start_urls = ['https://www.zazhi.us/magazines?cao_type=1/']
-
     rules = (
         Rule(LinkExtractor(allow=r'https://www.zazhi.us/magazines/([a-z]+-*[a-z]+/)*page/\S+'), follow=True),
         Rule(LinkExtractor(allow=r'https://www.zazhi.us/\d+.html'), callback='parse_item'),
@@ -43,7 +48,7 @@ class ZazhiusSpider(CrawlSpider):
     def parse_pan_url(self, response, item):
         self.logger.debug(f'开始解析source_url的返回：{response.text}')
         item['pan_share_url'] = re.search(r"https://pan.baidu.com/[^']+", response.text).group()
-        self.logger.debug(f"解析{response.url}，获得完整数据：{item.items()}")
+        self.logger.info(f"解析{response.url}，获得完整数据：{item.items()}")
         return item
 
     def getImgUrl(self, url, web_prefix):

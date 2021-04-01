@@ -53,7 +53,7 @@ class MyImagesPipeline(ImagesPipeline):
     def item_completed(self, results, item, info):
         image_paths = [x['path'] for ok, x in results if ok]
         if not image_paths:
-            logger.error(f"{item['journal_url']}没有图片:{self.IMAGES_URLS_FIELD+self.IMAGES_RESULT_FIELD}")
+            logger.error(f"{item['journal_url']}没有图片:处理的urls:{ItemAdapter(item).get(self.images_urls_field, [])}")
             return item
         adapter = ItemAdapter(item)
         adapter['images_os_path'] = image_paths
